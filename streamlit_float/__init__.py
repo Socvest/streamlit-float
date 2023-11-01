@@ -119,13 +119,13 @@ def float_parent(css=None):
         st.markdown('<div class="float flt-' + new_id + '"></div>', unsafe_allow_html=True)
         js_ = f'''
             <script>
-                float_el = parent.document.querySelectorAll('div[class="float flt-{new_id}"]')
+                float_el = window.top.document.querySelectorAll('div[class="float flt-{new_id}"]')
                 float_el_parent_two_levels_up = float_el[0].closest("div > .element-container ").parentNode
                 float_el_parent_two_levels_up.id = "float-this-component-{new_id}"
                 float_el_parent_two_levels_up.style = '{css}'
-                new_float_id_el = parent.document.querySelectorAll('iframe[srcdoc*="{new_id}"]')[0].parentNode
+                new_float_id_el = window.top.document.querySelectorAll('iframe[srcdoc*="{new_id}"]')[0].parentNode
                 new_float_id_el.style = 'display:none;'
-                float_el_hide = parent.document.querySelectorAll('div[class="float flt-{new_id}"]')[0].closest("div > .element-container ")
+                float_el_hide = window.top.document.querySelectorAll('div[class="float flt-{new_id}"]')[0].closest("div > .element-container ")
                 float_el_hide.style = 'display:none;'
             </script>
             '''
@@ -142,13 +142,13 @@ def float(self, css=None):
         self.markdown('<div class="float flt-' + new_id + '"></div>', unsafe_allow_html=True)
         js_ = f'''
             <script>
-                float_el_delta = parent.document.querySelectorAll('div[class="float flt-{new_id}"]')
+                float_el_delta = window.top.document.querySelectorAll('div[class="float flt-{new_id}"]')
                 float_el_parent_two_levels_up = float_el_delta[0].closest("div > .element-container ").parentNode
                 float_el_parent_two_levels_up.id = "float-this-component-{new_id}"
                 float_el_parent_two_levels_up.style = 'display:flex; flex-direction:column; position:fixed; z-index:99; {css}'
-                new_float_id_el = parent.document.querySelectorAll('iframe[srcdoc*="{new_id}"]')[0].parentNode
+                new_float_id_el = window.top.document.querySelectorAll('iframe[srcdoc*="{new_id}"]')[0].parentNode
                 new_float_id_el.style = 'display:none;'
-                float_el_hide = parent.document.querySelectorAll('div[class="float flt-{new_id}"]')[0].closest("div > .element-container ")
+                float_el_hide = window.top.document.querySelectorAll('div[class="float flt-{new_id}"]')[0].closest("div > .element-container ")
                 float_el_hide.style = 'display:none;'
             </script>
             '''
